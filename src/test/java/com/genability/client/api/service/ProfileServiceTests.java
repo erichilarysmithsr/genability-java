@@ -29,7 +29,7 @@ public class ProfileServiceTests extends BaseServiceTests {
 	
 	
 	@Test
-	@Ignore
+//	@Ignore
 	public void testGetProfile() {
 		
 		Profile newProfile = createProfile();
@@ -71,6 +71,24 @@ public class ProfileServiceTests extends BaseServiceTests {
 		
 		cleanup(account.getAccountId());
 	}
+	
+	@Test
+	public void testGetProfileWithBaseline() {
+		
+		Profile newProfile = createProfile();
+		GetProfileRequest request = new GetProfileRequest();
+		
+		// set a valid usageProfileId
+		request.setProfileId(newProfile.getProfileId());
+		request.setGroupBy(GroupBy.MONTH);
+		request.setPopulateReadings(true);
+		request.setPopulateBaseline(true);
+		Profile resultProfile =	callGetProfile("Test get one profile",request);
+		assertNotNull("restResponse null",resultProfile);
+		
+		cleanup(newProfile.getAccountId());
+	}
+	
 
 	public Profile callGetProfile(String testCase, GetProfileRequest request) {
 		

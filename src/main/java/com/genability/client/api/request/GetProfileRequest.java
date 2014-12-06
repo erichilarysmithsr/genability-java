@@ -63,6 +63,11 @@ public class GetProfileRequest extends AbstractRequest implements Serializable{
 	 * Private member holding optional clip-by argument.
 	 */
 	private ClipBy clipBy;
+	
+	/**
+	 * Private member holding optional group-by argument.
+	 */
+	private Boolean populateBaseline;
 
 
 	public String getProfileId() {
@@ -181,6 +186,14 @@ public class GetProfileRequest extends AbstractRequest implements Serializable{
 		addParam(qparams,"clipBy",clipBy);
 		return qparams;
 		
+	}
+
+	public Boolean getPopulateBaseline() {
+		return populateBaseline;
+	}
+
+	public void setPopulateBaseline(Boolean populateBaseline) {
+		this.populateBaseline = populateBaseline;
 	}
 	
 } // end of class GetProfileRestRequest
